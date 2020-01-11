@@ -1,0 +1,24 @@
+{
+  "gamedesc": "A semi-idle game in which the protagonist is somehow exiled to a void universe and has to use the magical powers that are present in said universe to learn to survive.",
+  "madeby": "Made By",
+  "quests": {
+    "exiled": {
+      "name": "Exiled",
+      "desc": "You have been exiled to this void universe. You should be dead, but you are not.",
+      "stages": [
+        {
+          "desc": "The first stage."
+        }
+      ]
+    },
+    "thetestmonster": {
+      "name": "The Test Monster",
+      "desc": "There is a bad monster around, it's called the test monster.",
+      "stages": [
+        {
+          "desc": "Find the test monster."
+        }
+      ]
+    }
+  }
+}

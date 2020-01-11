@@ -1,23 +1,23 @@
 const questData = [
     {
         id: 0,
-        name: "Exiled",
-        description: "You have been exiled to this void universe. You should be dead, but you are not.",
+        name: "quests.exiled.name",
+        description: "quests.exiled.desc",
         stages: [
             {
                 id: 0,
-                description: "TEST",
+                description: "quests.exiled.stages.0.desc",
             },
         ],
     },
     {
         id: 1,
-        name: "The Test Monster",
-        description: "There is a bad monster around, it's called the test monster",
+        name: "quests.thetestmonster.name",
+        description: "quests.thetestmonster.desc",
         stages: [
             {
                 id: 0,
-                description: "Find the test monster"
+                description: "quests.thetestmonster.stages.0.desc"
             }
         ]
     }

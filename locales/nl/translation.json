@@ -1,0 +1,24 @@
+{
+  "gamedesc": "Een semi-idle spel waarin de hoofdpersoon op een of andere manier verbannen is naar een leef universum en moet leren te overleven met de magische krachten die aanwezig zijn in dit universum.",
+  "madeby": "Gemaakt door",
+  "quests": {
+    "exiled": {
+      "desc": "Je bent verbannen naar dit lege universum. Je zou dood moeten mijn, maar dat ben je niet...",
+      "name": "Verbannen",
+      "stages": [
+        {
+          "desc": "De eerste fase."
+        }
+      ]
+    },
+    "thetestmonster": {
+      "desc": "Er is een slecht monster, het heet het Test Monster.",
+      "name": "Het test monster",
+      "stages": [
+        {
+          "desc": "Vind het test monster."
+        }
+      ]
+    }
+  }
+}
