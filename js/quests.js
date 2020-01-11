@@ -3,10 +3,10 @@ function showQuests(){
     let questText = "<ul>";
 
     questData.forEach(function(quest){
-        questText += "<li>[" + quest.id + "] " + i18next.t(quest.name) + "<br />" + i18next.t(quest.description) + "</li>";
+        questText += "<li>[" + quest.id + "] " + i18next.t("quests." + quest.lid + ".name") + "<br />" + i18next.t("quests." + quest.lid + ".desc") + "</li>";
         questText += "<ul>";
         quest.stages.forEach(function(stage){
-            questText += "<li>[" + stage.id + "] " + i18next.t(stage.description) + "</li>";
+            questText += "<li>[" + stage.id + "] " + i18next.t("quests." + quest.lid + ".stages." + stage.id + ".desc") + "</li>";
         });
         questText += "</ul>";
     });

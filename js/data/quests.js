@@ -1,25 +1,21 @@
 const questData = [
     {
         id: 0,
-        name: "quests.exiled.name",
-        description: "quests.exiled.desc",
+        lid: "exiled",
         stages: [
             {
                 id: 0,
-                description: "quests.exiled.stages.0.desc",
             },
         ],
     },
     {
         id: 1,
-        name: "quests.thetestmonster.name",
-        description: "quests.thetestmonster.desc",
+        lid: "thetestmonster",
         stages: [
             {
                 id: 0,
-                description: "quests.thetestmonster.stages.0.desc"
             }
-        ]
+        ],
     }
 ];
 
