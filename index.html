@@ -14,10 +14,21 @@
     <body>
         <div class="uk-container">
             <h1>Taivu</h1>
-            <p id="translationtest"></p>
-            <p id="gamedesc"></p>
-            <div id="questlist"></div>
-            <div id="skilllist"></div>
+
+            <ul class="uk-subnav uk-subnav-pill" uk-switcher>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Skills</a></li>
+                <li><a href="#">Quests</a></li>
+            </ul>
+
+            <ul class="uk-switcher uk-margin">
+                <li>
+                    <p id="gamedesc"></p>
+                </li>
+                <li id="skilllist"></li>
+                <li id="questlist"></li>
+            </ul>
+
             <p><span id="madeby"></span> <a href="https://github.com/mrDLSable">Dirk "mrDLSable" Schut &copy; 2019</a></p>
         </div>
 
