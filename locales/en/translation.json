@@ -20,5 +20,31 @@
         }
       ]
     }
+  },
+  "skills": {
+    "magic": {
+      "name": "Magic",
+      "desc": "Your arcane abilities."
+    },
+    "spatialmagics": {
+      "name": "Spatial Magics",
+      "desc": "Your ability to stabalize the void dimension."
+    },
+    "runicmagics": {
+      "name": "Runic Magics",
+      "desc": "Your ability with the written magics."
+    },
+    "animalcare": {
+      "name": "Animal Care",
+      "desc": "Your abilities regarding animals."
+    },
+    "husbandry": {
+      "name": "Husbandry",
+      "desc": "Your ability to harvest produce from live animals."
+    },
+    "butchering": {
+      "name": "Butchering",
+      "description": "The ability to kill animals and harvest their flesh."
+    }
   }
 }
