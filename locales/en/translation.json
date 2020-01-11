@@ -44,7 +44,39 @@
     },
     "butchering": {
       "name": "Butchering",
-      "description": "The ability to kill animals and harvest their flesh."
+      "desc": "The ability to kill animals and harvest their flesh."
+    },
+    "skinning": {
+      "name": "Skinning",
+      "desc": "Getting skins and hides from dead animals."
+    },
+    "naturemanagement": {
+      "name": "Nature Management",
+      "desc": "Managing plants."
+    },
+    "taming": {
+      "name": "Taming",
+      "desc": "Taming animals."
+    },
+    "woodcutting": {
+      "name": "Woodcutting",
+      "desc": "Chopping down trees."
+    },
+    "harvesting": {
+      "name": "Harvesting",
+      "desc": "Harvesting planted crops."
+    },
+    "planting": {
+      "name": "Planting",
+      "desc": "Planting crops."
+    },
+    "metalworking": {
+      "name": "Metal Working",
+      "desc": "Everything related to metal working."
+    },
+    "smelting": {
+      "name": "Smelting",
+      "desc": "Smelting ore into ingots."
     }
   }
 }

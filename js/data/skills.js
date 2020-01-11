@@ -35,7 +35,63 @@ const skillData = [
         lid: "butchering",
         levelCap: 10,
         parentSkill: skillIDS.animalcare,
-    }
+    },
+    {
+        id: skillIDS.skinning,
+        lid: "skinning",
+        levelCap: 10,
+        parentSkill: skillIDS.animalcare,
+    },
+    {
+        id: skillIDS.taming,
+        lid: "taming",
+        levelCap: 10,
+        parentSkill: skillIDS.animalcare,
+    },
+
+    //Nature (8-11)
+    {
+        id: skillIDS.naturemanagement,
+        lid: "naturemanagement",
+        levelCap: 10,
+    },
+    {
+        id: skillIDS.woodcutting,
+        lid: "woodcutting",
+        levelCap: 10,
+        parentSkill: skillIDS.naturemanagement,
+    },
+    {
+        id: skillIDS.harvesting,
+        lid: "harvesting",
+        levelCap: 10,
+        parentSkill: skillIDS.naturemanagement,
+    },
+    {
+        id: skillIDS.planting,
+        lid: "planting",
+        levelCap: 10,
+        parentSkill: skillIDS.naturemanagement,
+    },
+
+    //Metal (12-14)
+    {
+        id: skillIDS.metalworking,
+        lid: "metalworking",
+        levelCap: 10,
+    },
+    {
+        id: skillIDS.mining,
+        lid: "mining",
+        levelCap: 10,
+        parentSkill: skillIDS.metalworking,
+    },
+    {
+        id: skillIDS.smelting,
+        lid: "smelting",
+        levelCap: 10,
+        parentSkill: skillIDS.metalworking,
+    },
 ];
 
 const skillIDS = {
@@ -47,8 +103,11 @@ const skillIDS = {
     butchering: 5,
     skinning: 6,
     taming: 7,
-    woodcutting: 8,
-    mining: 9,
-    smelting: 10,
-    farming: 11,
+    naturemanagement: 8,
+    woodcutting: 9,
+    harvesting: 10,
+    planting: 11,
+    metalworking: 12,
+    mining: 13,
+    smelting: 14,
 };
