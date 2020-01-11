@@ -74,6 +74,10 @@
       "name": "Metal Working",
       "desc": "Everything related to metal working."
     },
+    "mining": {
+      "name": "Mining",
+      "desc": "Mining ore from the ground."
+    },
     "smelting": {
       "name": "Smelting",
       "desc": "Smelting ore into ingots."

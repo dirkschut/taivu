@@ -1,3 +1,21 @@
+const skillIDS = {
+    magic: 0,
+    spatialmagics: 1,
+    runicmagics: 2,
+    animalcare: 3,
+    husbandry: 4,
+    butchering: 5,
+    skinning: 6,
+    taming: 7,
+    naturemanagement: 8,
+    woodcutting: 9,
+    harvesting: 10,
+    planting: 11,
+    metalworking: 12,
+    mining: 13,
+    smelting: 14,
+};
+
 const skillData = [
     //Magic (0-2)
     {
@@ -93,21 +111,3 @@ const skillData = [
         parentSkill: skillIDS.metalworking,
     },
 ];
-
-const skillIDS = {
-    magic: 0,
-    spatialmagics: 1,
-    runicmagics: 2,
-    animalcare: 3,
-    husbandry: 4,
-    butchering: 5,
-    skinning: 6,
-    taming: 7,
-    naturemanagement: 8,
-    woodcutting: 9,
-    harvesting: 10,
-    planting: 11,
-    metalworking: 12,
-    mining: 13,
-    smelting: 14,
-};
