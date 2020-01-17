@@ -1,28 +1,45 @@
+//Display the skill list in the skills tab.
 function showSkills(){
     console.log("---Showing Skills---");
     let skillText = "<ul>";
 
-    skillData.forEach(function(skill){
-        if(skill.parentSkill == null){
+    for(skill in skillData){
+        if(!skillHasParent(skill)){
             skillText += getSkillText(skill);
         }
-    });
+    }
 
     skillText += "</ul>";
     $("#skilllist").html(skillText);
 };
 
-function getSkillText(skill){
-    let skillText = "<li>";
-    skillText += "[" + skill.id + "] " + i18next.t("skills." + skill.lid + ".name") + "<br />";
-    skillText += i18next.t("skills." + skill.lid + ".desc");
+// Checks to see if a skill has a parent skill set.
+function skillHasParent(skillID){
+    if(skillData[skillID].parentSkill == null){
+        return false;
+    }
+    return true;
+}
 
-    let subSkills = skillData.filter(subSkill => subSkill.parentSkill === skill.id);
-    if(subSkills.length > 0){
-        skillText += "<ul>";
-        subSkills.forEach(function(subSkill){
-            skillText += getSkillText(subSkill);
-        });
+// Generate the skill text for a given skill.
+function getSkillText(skillID){
+    let skillText = "<li>";
+    
+    skillText += "<b>" + i18next.t("skills." + skillID + ".name") + "</b><br />";
+    skillText += i18next.t("skills." + skillID + ".desc") + "<br />";
+    skillText += "Level Cap: " + skillData[skillID].levelCap + "<br />";
+
+    let childSkills = "";
+
+    for(childSkill in skillData){
+        if(skillData[childSkill].parentSkill == skillID){
+            childSkills += getSkillText(childSkill);
+        }
+    }
+
+    if(childSkills != ""){
+        skillText += "Child Skills: <ul>";
+        skillText += childSkills;
         skillText += "</ul>";
     }
 
