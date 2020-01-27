@@ -22,3 +22,24 @@ function getItemText(itemID){
     itemText += "</li>";
     return itemText;
 }
+
+//Adds a given amount to a given item.
+function addItemToInventory(item, amount){
+    if(items[item] == null){
+        items[item] = {};
+        items[item].amount = amount;
+    }else{
+        items[item].amount += amount;
+    }
+    displayInventory();
+}
+
+function displayInventory(){
+    let invText = "";
+
+    for(item in items){
+        invText += "<li>" + items[item].amount + " " + i18next.t("items." + item + ".name") + "</li>";
+    }
+
+    $("#inventory").html(invText);
+}
