@@ -1,3 +1,4 @@
+//Display the quests in the quests tab.
 function showQuests(){
     console.log("---Showing Quests---");
     let questText = "<ul>";
@@ -10,6 +11,7 @@ function showQuests(){
     $("#questlist").html(questText);
 };
 
+//Returns the quest string for a given quest ID.
 function getQuestText(quest){
     console.log(quest);
     let questText = "<li>";

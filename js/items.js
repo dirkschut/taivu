@@ -1,3 +1,4 @@
+//Displays the items in the items tab.
 function showItems(){
     console.log("---Showing Items---");
     let itemText = "<ul>";
@@ -10,6 +11,7 @@ function showItems(){
     $("#itemlist").html(itemText);
 }
 
+//Returns the item text for a given item.
 function getItemText(itemID){
     console.log(itemID);
     let itemText = "<li>";
