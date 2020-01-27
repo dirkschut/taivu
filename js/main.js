@@ -12,5 +12,6 @@ function loadAll(){
     else{
         showQuests();
         showSkills();
+        showItems();
     }
 }

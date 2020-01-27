@@ -1,25 +1,16 @@
-const questData = [
-    {
-        id: 0,
-        lid: "exiled",
+const questData = {
+    "exiled": {
         stages: [
             {
                 id: 0,
             },
         ],
     },
-    {
-        id: 1,
-        lid: "thetestmonster",
+    "thetestmonster": {
         stages: [
             {
                 id: 0,
             }
         ],
     }
-];
-
-const questIDS = {
-    Exiled: 0,
-    The_Test_Monster: 1,
 };

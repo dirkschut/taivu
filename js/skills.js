@@ -23,6 +23,7 @@ function skillHasParent(skillID){
 
 // Generate the skill text for a given skill.
 function getSkillText(skillID){
+    console.log(skillID);
     let skillText = "<li>";
     
     skillText += "<b>" + i18next.t("skills." + skillID + ".name") + "</b><br />";

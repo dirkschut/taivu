@@ -82,5 +82,11 @@
       "name": "Smelting",
       "desc": "Smelting ore into ingots."
     }
+  },
+  "items": {
+    "essence_void_weak": {
+      "name": "Weak Void Essence",
+      "desc": "Weak essence harvested from the void."
+    }
   }
 }
