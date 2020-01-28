@@ -74,3 +74,58 @@ function getActionText(skillID, actionID){
 
     return actionText;
 }
+
+//Displays the skill levels on the home page.
+function displayLevels(){
+    let levelText = "";
+    for(level in skills){
+        levelText += "<li>" + i18next.t("skills." + level + ".name") + ": " + skills[level];
+    }
+    $("#levels").html(levelText);
+}
+
+//Displays the action buttons on the home page.
+function displayActionButtons(){
+    let actionsText = "";
+    for(skillID in skillData){
+        let skill = skillData[skillID];
+        for(actionID in skill.actions){
+            let action = skill.actions[actionID];
+            if(skills[skillID] != null){
+                if(skills[skillID] >= action.level){
+                    actionsText += "<button class='uk-button uk-button-default' onclick='doAction(`" + skillID + "`, `" + actionID + "`)'>" + i18next.t("skills." + skillID + ".actions." + actionID + ".name") + "</button>";
+                }
+            }
+        }
+    }
+    $("#actions").html(actionsText);
+}
+
+//Does the given action.
+function doAction(skillID, actionID){
+    if(skills[skillID] != null){
+        let action = skillData[skillID].actions[actionID]
+        if(skills[skillID] >= action.level){
+            let successChance = skills[skillID] / action.level / action.difficulty;
+            let roll = Math.random();
+            if(roll < successChance){
+                for(itemID in action.output){
+                    addItemToInventory(itemID, action.output[itemID].amount);
+
+                    if(successChance < 5){
+                        let lvlChance = (1 / successChance) * .1 / action.difficulty;
+                        console.log(lvlChance);
+                        roll = Math.random();
+                        if(roll < lvlChance){
+                            skills[skillID]++;
+                            displayActionButtons();
+                            displayLevels();
+                        }
+                    }
+                }
+            }else{
+                console.log("FAILURE");
+            }
+        }
+    }
+}

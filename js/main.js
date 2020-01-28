@@ -2,6 +2,7 @@ var loadedLocales = false; //When set to true indicates that the locales strings
 var loadedContent = false; //When set to true indicates that the content (quests, items, skills, etc.) have been loaded. Can be used as a check for mods.
 
 var items = {};
+var skills = {};
 
 //Gets called when the document is loaded.
 $(document).ready(function(){
@@ -15,13 +16,19 @@ function loadAll(){
         loadLocales();
     }
     else{
+        initSave();
         showQuests();
         showSkills();
         showItems();
+        displayLevels();
+        displayActionButtons();
+
         loadedContent = true;
     }
 }
 
-function gatherVoid(){
-    addItemToInventory("essence_void_weak", 1);
+//Initialize the save game.
+function initSave(){
+    console.log("---Initializing Save---");
+    skills["spatialmagics"] = 1;
 }

@@ -34,6 +34,7 @@ function addItemToInventory(item, amount){
     displayInventory();
 }
 
+//Display the user's inventory.
 function displayInventory(){
     let invText = "";
 
