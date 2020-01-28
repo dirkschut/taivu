@@ -3,6 +3,7 @@ var loadedContent = false; //When set to true indicates that the content (quests
 
 var items = {};
 var skills = {};
+var currentAction = {};
 
 //Gets called when the document is loaded.
 $(document).ready(function(){

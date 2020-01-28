@@ -9,6 +9,7 @@ const skillData = {
             "gather_essence_void_weak":{
                 level: 1,
                 difficulty: 1,
+                time: 1000,
                 output: {
                     "essence_void_weak": {
                         amount: 1,
@@ -18,6 +19,7 @@ const skillData = {
             "gather_essence_void_medium":{
                 level: 5,
                 difficulty: 2,
+                time: 3000,
                 output: {
                     "essence_void_medium": {
                         amount: 1,
@@ -27,6 +29,7 @@ const skillData = {
             "gather_essence_void_strong":{
                 level: 10,
                 difficulty: 3,
+                time: 5000,
                 output: {
                     "essence_void_strong": {
                         amount: 1,

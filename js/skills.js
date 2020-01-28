@@ -93,7 +93,7 @@ function displayActionButtons(){
             let action = skill.actions[actionID];
             if(skills[skillID] != null){
                 if(skills[skillID] >= action.level){
-                    actionsText += "<button class='uk-button uk-button-default' onclick='doAction(`" + skillID + "`, `" + actionID + "`)'>" + i18next.t("skills." + skillID + ".actions." + actionID + ".name") + "</button>";
+                    actionsText += "<button class='uk-button uk-button-default' onclick='setCurrentAction(`" + skillID + "`, `" + actionID + "`)'>" + i18next.t("skills." + skillID + ".actions." + actionID + ".name") + "</button>";
                 }
             }
         }
@@ -112,14 +112,17 @@ function doAction(skillID, actionID){
                 for(itemID in action.output){
                     addItemToInventory(itemID, action.output[itemID].amount);
 
-                    if(successChance < 5){
-                        let lvlChance = (1 / successChance / successChance) * .1 / action.level;
+                    if(skills[skillID] - action.level < 5 && skills[skillID] < skillData[skillID].levelCap){
+                        let lvlChance = (1 / (skills[skillID] * skills[skillID] / action.level)) * .1 / action.level;
+                        console.log("level: " + skills[skillID] + " lvlchance: " + lvlChance + " (1 in " + (1 / lvlChance) + ")");
                         roll = Math.random();
                         if(roll < lvlChance){
                             skills[skillID]++;
                             displayActionButtons();
                             displayLevels();
                         }
+                    }else{
+                        console.log("Too high level for levelup or level cap reached. " + skills[skillID] + "-" + action.level);
                     }
                 }
             }else{
@@ -127,4 +130,20 @@ function doAction(skillID, actionID){
             }
         }
     }
+}
+
+//Sets the current action and starts the interval.
+function setCurrentAction(skillID, actionID){
+    console.log("Setting current action to " + skillID + " " + actionID);
+    currentAction.skillID = skillID;
+    currentAction.actionID = actionID;
+    clearInterval(currentAction.interval);
+    currentAction.interval = setInterval(() => {
+        doCurrentAction()
+    }, skillData[skillID].actions[actionID].time);
+}
+
+//Is called by the interval to do the current action.
+function doCurrentAction(){
+    doAction(currentAction.skillID, currentAction.actionID);
 }
