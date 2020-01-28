@@ -30,6 +30,15 @@ function getSkillText(skillID){
     skillText += i18next.t("skills." + skillID + ".desc") + "<br />";
     skillText += "Level Cap: " + skillData[skillID].levelCap + "<br />";
 
+    skillText += "Actions:<ul>";
+
+    for(actionID in skillData[skillID].actions){
+        skillText += getActionText(skillID, actionID);
+    }
+
+
+    skillText += "</ul>";
+
     let childSkills = "";
 
     for(childSkill in skillData){
@@ -46,4 +55,22 @@ function getSkillText(skillID){
 
     skillText += "</li>";
     return skillText;
+}
+
+//Get text describing an action for the skills page.
+function getActionText(skillID, actionID){
+    let action = skillData[skillID].actions[actionID];
+    let actionText = "<li>";
+
+    actionText += "<b>" + i18next.t("skills." + skillID + ".actions." + actionID + ".name") + "</b><br />";
+    actionText += i18next.t("skills." + skillID + ".actions." + actionID + ".desc") + "</b><br />";
+    actionText += "Required level: " + action.level + "<br />";
+    actionText += "Difficulty: " + action.difficulty + "<br />";
+    actionText += "Output: <ul>";
+    for(output in action.output){
+        actionText += "<li>" + action.output[output].amount + " " + i18next.t("items." + output + ".name") + "</li>";
+    }
+    actionText += "</ul></li>";
+
+    return actionText;
 }

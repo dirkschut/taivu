@@ -5,6 +5,35 @@ const skillData = {
     "spatialmagics": {
         levelCap: 10,
         parentSkill: "magic",
+        actions: {
+            "gather_essence_void_weak":{
+                level: 0,
+                difficulty: 0,
+                output: {
+                    "essence_void_weak": {
+                        amount: 1,
+                    },
+                }
+            },
+            "gather_essence_void_medium":{
+                level: 5,
+                difficulty: 1,
+                output: {
+                    "essence_void_medium": {
+                        amount: 1,
+                    },
+                }
+            },
+            "gather_essence_void_strong":{
+                level: 10,
+                difficulty: 2,
+                output: {
+                    "essence_void_strong": {
+                        amount: 1,
+                    },
+                }
+            },
+        },
     },
     "runicmagics": {
         levelCap: 10,

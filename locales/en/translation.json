@@ -28,7 +28,21 @@
     },
     "spatialmagics": {
       "name": "Spatial Magics",
-      "desc": "Your ability to stabalize the void dimension."
+      "desc": "Your ability to stabalize the void dimension.",
+      "actions": {
+        "gather_essence_void_weak": {
+          "name": "Gather $t(items.essence_void_weak.name)",
+          "desc": "Using the magical powers you have access to you can gather some of the essence of the void."
+        },
+        "gather_essence_void_medium": {
+          "name": "Gather $t(items.essence_void_medium.name)",
+          "desc": "Using the magical powers you have access to you can gather some of the essence of the void."
+        },
+        "gather_essence_void_strong": {
+          "name": "Gather $t(items.essence_void_strong.name)",
+          "desc": "Using the magical powers you have access to you can gather some of the essence of the void."
+        }
+      }
     },
     "runicmagics": {
       "name": "Runic Magics",
@@ -87,6 +101,14 @@
     "essence_void_weak": {
       "name": "Weak Void Essence",
       "desc": "Weak essence harvested from the void."
+    },
+    "essence_void_medium": {
+      "name": "Medium Void Essence",
+      "desc": "Medium essence harvested from the void."
+    },
+    "essence_void_strong": {
+      "name": "Strong Void Essence",
+      "desc": "Strong essence harvested from the void."
     }
   }
 }
