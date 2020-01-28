@@ -1,5 +1,11 @@
 const itemData = {
     "essence_void_weak": {
-        test: "test",
+        category: "essence",
+    },
+    "essence_void_medium": {
+        category: "essence",
+    },
+    "essence_void_strong": {
+        category: "essence",
     },
 }
