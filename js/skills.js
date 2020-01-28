@@ -113,8 +113,7 @@ function doAction(skillID, actionID){
                     addItemToInventory(itemID, action.output[itemID].amount);
 
                     if(successChance < 5){
-                        let lvlChance = (1 / successChance) * .1 / action.difficulty;
-                        console.log(lvlChance);
+                        let lvlChance = (1 / successChance / successChance) * .1 / action.level;
                         roll = Math.random();
                         if(roll < lvlChance){
                             skills[skillID]++;
