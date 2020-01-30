@@ -6,8 +6,8 @@ function loadLocales(){
         fallbackLng: 'en',
         debug: true,
         backend: {
-            loadPath: '/locales/{{lng}}/{{ns}}.json',
-            crossDomain: true,
+            loadPath: 'locales/{{lng}}/{{ns}}.json',
+            crossDomain: false,
         },
     }, function(err, t){
         updateContent();
