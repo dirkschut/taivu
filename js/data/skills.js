@@ -20,6 +20,11 @@ const skillData = {
                 level: 5,
                 difficulty: 2,
                 time: 3000,
+                input: {
+                    "essence_void_weak": {
+                        amount: 2,
+                    }
+                },
                 output: {
                     "essence_void_medium": {
                         amount: 1,
@@ -30,6 +35,11 @@ const skillData = {
                 level: 10,
                 difficulty: 3,
                 time: 5000,
+                input: {
+                    "essence_void_medium":{
+                        amount: 2
+                    },
+                },
                 output: {
                     "essence_void_strong": {
                         amount: 1,

@@ -39,6 +39,27 @@ function addItemToInventory(item, amount){
     displayInventory();
 }
 
+//Checks to see if an item can be removed from the inventory. Returns true if successful and false if not.
+function canRemoveFromInventory(itemID, amount){
+    if(items[itemID] != null){
+        if(items[itemID].amount >= amount){
+            return true;
+        }
+    }
+    return false;
+}
+
+//Removes an item from the inventory. Returns true if successful and false if not.
+function removeFromInventory(itemID, amount){
+    if(items[itemID] != null){
+        if(items[itemID].amount >= amount){
+            items[itemID].amount -= amount;
+            return true;
+        }
+    }
+    return false;
+}
+
 //Display the user's inventory.
 function displayInventory(){
     let invText = "";

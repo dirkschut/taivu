@@ -66,6 +66,11 @@ function getActionText(skillID, actionID){
     actionText += i18next.t("skills." + skillID + ".actions." + actionID + ".desc") + "</b><br />";
     actionText += "Required level: " + action.level + "<br />";
     actionText += "Difficulty: " + action.difficulty + "<br />";
+    actionText += "Input: <ul>";
+    for(input in action.input){
+        actionText += "<li>" + action.input[input].amount + " " + i18next.t("items." + input + ".name") + "</li>";
+    }
+    actionText += "</ul>";
     actionText += "Output: <ul>";
     for(output in action.output){
         actionText += "<li>" + action.output[output].amount + " " + i18next.t("items." + output + ".name") + "</li>";
@@ -106,27 +111,43 @@ function doAction(skillID, actionID){
     if(skills[skillID] != null){
         let action = skillData[skillID].actions[actionID]
         if(skills[skillID] >= action.level){
-            let successChance = skills[skillID] / action.level / action.difficulty;
-            let roll = Math.random();
-            if(roll < successChance){
-                for(itemID in action.output){
-                    addItemToInventory(itemID, action.output[itemID].amount);
+            
+            let canRemove = true;
+            for(input in action.input){
+                if(!canRemoveFromInventory(input, action.input[input].amount)){
+                    canRemove = false;
+                }
+            }
 
-                    if(skills[skillID] - action.level < 5 && skills[skillID] < skillData[skillID].levelCap){
-                        let lvlChance = (1 / (skills[skillID] * skills[skillID] / action.level)) * .1 / action.level;
-                        console.log("level: " + skills[skillID] + " lvlchance: " + lvlChance + " (1 in " + (1 / lvlChance) + ")");
-                        roll = Math.random();
-                        if(roll < lvlChance){
-                            skills[skillID]++;
-                            displayActionButtons();
-                            displayLevels();
+            if(canRemove){
+                for(input in action.input){
+                    removeFromInventory(input, action.input[input].amount);
+                }
+
+                let successChance = skills[skillID] / action.level / action.difficulty;
+                let roll = Math.random();
+                if(roll < successChance){
+                    for(itemID in action.output){
+                        addItemToInventory(itemID, action.output[itemID].amount);
+    
+                        if(skills[skillID] - action.level < 5 && skills[skillID] < skillData[skillID].levelCap){
+                            let lvlChance = (1 / (skills[skillID] * skills[skillID] / action.level)) * .1 / action.level;
+                            console.log("level: " + skills[skillID] + " lvlchance: " + lvlChance + " (1 in " + (1 / lvlChance) + ")");
+                            roll = Math.random();
+                            if(roll < lvlChance){
+                                skills[skillID]++;
+                                displayActionButtons();
+                                displayLevels();
+                            }
+                        }else{
+                            console.log("Too high level for levelup or level cap reached. " + skills[skillID] + "-" + action.level);
                         }
-                    }else{
-                        console.log("Too high level for levelup or level cap reached. " + skills[skillID] + "-" + action.level);
                     }
+                }else{
+                    console.log("FAILURE");
                 }
             }else{
-                console.log("FAILURE");
+                console.log("Not enough input items.");
             }
         }
     }
