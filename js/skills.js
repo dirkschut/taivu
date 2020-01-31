@@ -108,6 +108,7 @@ function displayActionButtons(){
 
 //Does the given action.
 function doAction(skillID, actionID){
+    currentAction.lastTime = Date.now();
     if(skills[skillID] != null){
         let action = skillData[skillID].actions[actionID]
         if(skills[skillID] >= action.level){
@@ -159,12 +160,26 @@ function setCurrentAction(skillID, actionID){
     currentAction.skillID = skillID;
     currentAction.actionID = actionID;
     clearInterval(currentAction.interval);
+    $("#currentAction").html(i18next.t("skills." + skillID + ".actions." + actionID + ".name"));
+    document.getElementById("actionProgress").max = skillData[skillID].actions[actionID].time;
     currentAction.interval = setInterval(() => {
         doCurrentAction()
     }, skillData[skillID].actions[actionID].time);
+
+    currentAction.lastTime = Date.now();
+    clearInterval(currentAction.progressUpdate);
+    currentAction.progressUpdate = setInterval(() => {
+        updateProgress();
+    }, 10);
 }
 
 //Is called by the interval to do the current action.
 function doCurrentAction(){
     doAction(currentAction.skillID, currentAction.actionID);
+}
+
+//Updates the action progressbar.
+function updateProgress(){
+    let test = Date.now() - currentAction.lastTime;
+    document.getElementById("actionProgress").value = test;
 }
