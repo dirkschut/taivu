@@ -129,6 +129,7 @@ function doAction(skillID, actionID){
                 let roll = Math.random();
                 if(roll < successChance){
                     for(itemID in action.output){
+                        currentAction.messages.push("Successful Action.");
                         addItemToInventory(itemID, action.output[itemID].amount);
     
                         if(skills[skillID] - action.level < 5 && skills[skillID] < skillData[skillID].levelCap){
@@ -139,18 +140,35 @@ function doAction(skillID, actionID){
                                 skills[skillID]++;
                                 displayActionButtons();
                                 displayLevels();
+                                currentAction.messages.push("Level up!");
                             }
                         }else{
-                            console.log("Too high level for levelup or level cap reached. " + skills[skillID] + "-" + action.level);
+                            currentAction.messages.push("Too high level for levelup or level cap reached.");
                         }
                     }
                 }else{
-                    console.log("FAILURE");
+                    currentAction.messages.push("Failed the action.");
                 }
             }else{
-                console.log("Not enough input items.");
+                currentAction.messages.push("You do not have enough items to complete the action.");
             }
         }
+    }
+
+    if(currentAction.messages != null){
+        while(currentAction.messages.length > 5){
+            currentAction.messages.shift();
+        }
+
+        let messageText = "<ul>";
+        for(message in currentAction.messages){
+            messageText += "<li>" + currentAction.messages[message] + "</li>";
+        }
+        messageText += "</ul>";
+
+        
+
+        $("#actionMessage").html(messageText);
     }
 }
 
@@ -159,6 +177,7 @@ function setCurrentAction(skillID, actionID){
     console.log("Setting current action to " + skillID + " " + actionID);
     currentAction.skillID = skillID;
     currentAction.actionID = actionID;
+    currentAction.messages = [];
     clearInterval(currentAction.interval);
     $("#currentAction").html(i18next.t("skills." + skillID + ".actions." + actionID + ".name"));
     document.getElementById("actionProgress").max = skillData[skillID].actions[actionID].time;

@@ -34,6 +34,7 @@ function addItemToInventory(item, amount){
     }
 
     if(items[item].amount > itemData[item].cap){
+        currentAction.messages.push("Itemcap reached.");
         items[item].amount = itemData[item].cap;
     }
     displayInventory();
