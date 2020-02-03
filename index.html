@@ -64,7 +64,7 @@
                     <ul class="uk-nav-default" uk-nav>
                         <li class="uk-nav-header">Game</li>
                         <li class="uk-active"><a href="#" onclick="showPage('home')">Home</a></li>
-                        <li><a href="#" onclick="showPage('testPage')">Inventory</a></li>
+                        <li><a href="#" onclick="showPage('inventoryPage')">Inventory</a></li>
                         <li><a href="#">Skills</a></li>
                         <li class="uk-nav-header">Data</li>
                         <li><a href="#" onclick="showPage('skilllist')">Skill List</a></li>
@@ -85,12 +85,15 @@
                     <h3 id="currentAction">Action Progress</h3>
                     <progress id="actionProgress" value="10" max="100" style="transition: none; width: 100%;"></progress>
                     <div id="actionMessage"></div>
-                    <h2>Inventory</h2>
-                    <ul id="inventory"></ul>
                     <h2>Levels</h2>
                     <ul id="levels"></ul>
                     <h2>Actions</h2>
                     <div id="actions"></div>
+                </div>
+
+                <div id="inventoryPage" class="taivuPage" style="display:none">
+                    <h2>Inventory</h2>
+                    <ul id="inventory"></ul>
                 </div>
 
                 <div id="skilllist" class="taivuPage" style="display:none"></div>
