@@ -69,3 +69,15 @@ function loadGame(){
         setSkillLevel(skill, tempSkills[skill].level);
     }
 }
+
+//Switch to the given page.
+function showPage(pageID){
+    let pages = document.getElementsByClassName("taivuPage");
+    for(let i = 0; i < pages.length; i++){
+        if(pages[i].id == pageID){
+            pages[i].style.display = "block";
+        }else{
+            pages[i].style.display = "none";
+        }
+    }
+}

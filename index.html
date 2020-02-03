@@ -36,18 +36,48 @@
         <!— Windows 8.1 + IE11 and above —>
         <meta name="msapplication-config" content="img/favicon/browserconfig.xml" />
 
+        <style type="text/css">
+        #left-col{
+            position:fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: #222;
+            width: 260px;
+            z-index: 1;
+        }
+        .bar-wrap{
+            padding: 2rem;
+        }
+        #right-col{
+            margin-left: 260px;
+        }
+        </style>
+
     </head>
     <body>
         <div class="uk-container">
-            <h1><img src="img/logo.svg" width="100px" />Taivu</h1>
+            <aside id="left-col" class="uk-light">
+                <div class="bar-wrap">
+                    <ul class="uk-nav-default" uk-nav>
+                        <li class="uk-nav-header">Game</li>
+                        <li class="uk-active"><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('testPage')">Inventory</a></li>
+                        <li><a href="#">Skills</a></li>
+                        <li class="uk-nav-header">Data</li>
+                        <li><a href="#" onclick="showPage('skilllist')">Skill List</a></li>
+                        <li><a href="#" onclick="showPage('questlist')">Quest List</a></li>
+                        <li><a href="#" onclick="showPage('itemlist')">Item List</a></li>
+                    </ul>
+                </div>
+            </aside>
 
-            <ul class="uk-subnav uk-subnav-pill" uk-switcher>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Game Data</a></li>
-            </ul>
+            <div id="right-col">
+                <h1><img src="img/logo.svg" width="100px" />Taivu</h1>
 
-            <ul class="uk-switcher uk-margin">
-                <li>
+                <div class="taivuPage" id="home">
                     <p id="gamedesc"></p>
                     <h3 id="currentAction">Action Progress</h3>
                     <progress id="actionProgress" value="10" max="100" style="transition: none; width: 100%;"></progress>
@@ -58,24 +88,15 @@
                     <ul id="levels"></ul>
                     <h2>Actions</h2>
                     <div id="actions"></div>
-                </li>
+                </div>
 
-                <li>
-                    <ul class="uk-subnav uk-subnav-pill" uk-switcher>
-                        <li><a href="#">Skills</a></li>
-                        <li><a href="#">Quests</a></li>
-                        <li><a href="#">Items</a></li>
-                    </ul>
-                    <ul class="uk-switcher uk-margin">
-                        This page shows the game data displayed nicely. Please note that literally all the spoilers are contained within this page, so don't read it if you don't want to be spoiled.
-                        <li id="skilllist"></li>
-                        <li id="questlist"></li>
-                        <li id="itemlist"></li>
-                    </ul>
-                </li>
-            </ul>
+                <div id="skilllist" class="taivuPage" style="display:none"></div>
+                <div id="questlist" class="taivuPage" style="display:none"></div>
+                <div id="itemlist" class="taivuPage" style="display:none"></div>
 
-            <p><span id="madeby"></span> <a href="https://github.com/mrDLSable">Dirk "mrDLSable" Schut &copy; 2019</a></p>
+                <p><span id="madeby"></span> <a href="https://github.com/mrDLSable">Dirk "mrDLSable" Schut &copy; 2019</a></p>
+            </div>
+                    
         </div>
 
         <script src="js/data/quests.js"></script>
