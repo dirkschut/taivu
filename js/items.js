@@ -13,8 +13,8 @@ class Item{
     //Add the given amount to the item inventory.
     addAmount(amount){
         this.amount += amount;
-        if(this.amount > this.getItemData().cap){
-            this.amount = this.getItemData().cap;
+        if(this.amount > this.cap){
+            this.amount = this.cap;
         }
     }
 
@@ -28,15 +28,24 @@ class Item{
 
     //Removes the given amount of the item from the inventory if possible.
     removeAmount(amount){
-        if(canRemoveAmount(amount)){
+        if(this.canRemoveAmount(amount)){
             this.amount -= amount;
             return true;
         }
         return false;
     }
 
+    //Get the item cap of the item.
     get cap(){
+        if(itemCapModifiers[this.category] != null){
+            return Math.floor(this.getItemData().cap * (1 + itemCapModifiers[this.category]));
+        }
         return this.getItemData().cap;
+    }
+
+    //Get the item category.
+    get category(){
+        return this.getItemData().category;
     }
 }
 
@@ -72,7 +81,6 @@ function addItemToInventory(item, amount){
         items[item] = new Item(item);
     }
     items[item].addAmount(amount);
-    displayInventory();
 }
 
 //Checks to see if an item can be removed from the inventory. Returns true if successful and false if not.

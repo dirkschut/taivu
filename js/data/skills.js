@@ -16,6 +16,21 @@ const skillData = {
                     },
                 }
             },
+            "increase_essence_cap": {
+                level: 3,
+                difficulty: 4,
+                time: 10000,
+                input: {
+                    "essence_void_weak": {
+                        amount: 100,
+                    }
+                },
+                increase_cap: {
+                    "essence": {
+                        amount: 0.5,
+                    }
+                }
+            },
             "gather_essence_void_medium":{
                 level: 5,
                 difficulty: 2,

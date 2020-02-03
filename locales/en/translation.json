@@ -41,6 +41,10 @@
         "gather_essence_void_strong": {
           "name": "Gather $t(items.essence_void_strong.name)",
           "desc": "Using the magical powers you have access to you can gather some of the essence of the void."
+        },
+        "increase_essence_cap": {
+          "name": "Increase essence item cap",
+          "desc": "Increases the amount of essence you can have in your inventory."
         }
       }
     },

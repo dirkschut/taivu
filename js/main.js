@@ -2,6 +2,7 @@ var loadedLocales = false; //When set to true indicates that the locales strings
 var loadedContent = false; //When set to true indicates that the content (quests, items, skills, etc.) have been loaded. Can be used as a check for mods.
 
 var items = {};
+var itemCapModifiers = {};
 var skills = {};
 var currentAction = {};
 

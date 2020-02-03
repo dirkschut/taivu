@@ -47,6 +47,11 @@ class Skill{
                     for(let itemID in action.output){
                         addItemToInventory(itemID, action.output[itemID].amount);
                     }
+
+                    //Increase the item cap.
+                    for(let category in action.increase_cap){
+                        addToItemCap(category, action.increase_cap[category].amount);
+                    }
     
                     //Check to see if the skill leveled from the action.
                     if(this.level - action.level < 5 && this.level < skillData[skillID].levelCap){
@@ -55,8 +60,6 @@ class Skill{
                         roll = Math.random();
                         if(roll < lvlChance){
                             this.level++;
-                            displayActionButtons();
-                            displayLevels();
                             currentAction.messages.push("Level up!");
                         }
                     }else{
@@ -71,6 +74,9 @@ class Skill{
         }
 
         displayActionMessages();
+        displayActionButtons();
+        displayLevels();
+        displayInventory();
     }
 }
 
@@ -237,4 +243,12 @@ function doCurrentAction(){
 function updateProgress(){
     let test = Date.now() - currentAction.lastTime;
     document.getElementById("actionProgress").value = test;
+}
+
+//Add the given amount to the item cap of the given category.
+function addToItemCap(category, amount){
+    if(itemCapModifiers[category] == null){
+        itemCapModifiers[category] = 0;
+    }
+    itemCapModifiers[category] += amount;
 }
