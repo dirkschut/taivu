@@ -1,3 +1,79 @@
+//The class which contains the skill data pertaining to the save game.
+class Skill{
+    constructor(id){
+        this.id = id;
+        this.level = 0;
+    }
+
+    //Set the skill level to the given level.
+    setLevel(level){
+        if(level <= this.getSkillData().levelCap && level >= 0){
+            this.level = level;
+        }
+    }
+
+    //Get the skill data from the skillData array.
+    getSkillData(){
+        return skillData[this.id];
+    }
+
+    doAction(actionID){
+        currentAction.lastTime = Date.now();
+        let action = this.getSkillData().actions[actionID];
+
+        if(this.level >= action.level){
+            
+            //Check to see if the input items can be removed from the inventory.
+            let canRemove = true;
+            for(input in action.input){
+                if(!canRemoveFromInventory(input, action.input[input].amount)){
+                    canRemove = false;
+                }
+            }
+
+            if(canRemove){
+                //Remove input items from inventory
+                for(input in action.input){
+                    removeFromInventory(input, action.input[input].amount);
+                }
+
+                //Check to see if you succeed in the action.
+                let successChance = this.level / action.level / action.difficulty;
+                let roll = Math.random();
+                if(roll < successChance){
+                    currentAction.messages.push("Successful Action.");
+
+                    //Add the output items to the inventory.
+                    for(let itemID in action.output){
+                        addItemToInventory(itemID, action.output[itemID].amount);
+                    }
+    
+                    //Check to see if the skill leveled from the action.
+                    if(this.level - action.level < 5 && this.level < skillData[skillID].levelCap){
+                        let lvlChance = (1 / (this.level * this.level / action.level)) * .1 / action.level;
+                        console.log("level: " + this.level + " lvlchance: " + lvlChance + " (1 in " + (1 / lvlChance) + ")");
+                        roll = Math.random();
+                        if(roll < lvlChance){
+                            this.level++;
+                            displayActionButtons();
+                            displayLevels();
+                            currentAction.messages.push("Level up!");
+                        }
+                    }else{
+                        currentAction.messages.push("Too high level for levelup or level cap reached.");
+                    }
+                }else{
+                    currentAction.messages.push("Failed the action.");
+                }
+            }else{
+                currentAction.messages.push("You do not have enough items to complete the action.");
+            }
+        }
+
+        displayActionMessages();
+    }
+}
+
 //Display the skill list in the skills tab.
 function showSkills(){
     console.log("---Showing Skills---");
@@ -84,7 +160,7 @@ function getActionText(skillID, actionID){
 function displayLevels(){
     let levelText = "";
     for(level in skills){
-        levelText += "<li>" + i18next.t("skills." + level + ".name") + ": " + skills[level];
+        levelText += "<li>" + i18next.t("skills." + level + ".name") + ": " + skills[level].level;
     }
     $("#levels").html(levelText);
 }
@@ -97,7 +173,7 @@ function displayActionButtons(){
         for(actionID in skill.actions){
             let action = skill.actions[actionID];
             if(skills[skillID] != null){
-                if(skills[skillID] >= action.level){
+                if(skills[skillID].level >= action.level){
                     actionsText += "<button class='uk-button uk-button-default' onclick='setCurrentAction(`" + skillID + "`, `" + actionID + "`)'>" + i18next.t("skills." + skillID + ".actions." + actionID + ".name") + "</button>";
                 }
             }
@@ -106,55 +182,8 @@ function displayActionButtons(){
     $("#actions").html(actionsText);
 }
 
-//Does the given action.
-function doAction(skillID, actionID){
-    currentAction.lastTime = Date.now();
-    if(skills[skillID] != null){
-        let action = skillData[skillID].actions[actionID]
-        if(skills[skillID] >= action.level){
-            
-            let canRemove = true;
-            for(input in action.input){
-                if(!canRemoveFromInventory(input, action.input[input].amount)){
-                    canRemove = false;
-                }
-            }
-
-            if(canRemove){
-                for(input in action.input){
-                    removeFromInventory(input, action.input[input].amount);
-                }
-
-                let successChance = skills[skillID] / action.level / action.difficulty;
-                let roll = Math.random();
-                if(roll < successChance){
-                    for(itemID in action.output){
-                        currentAction.messages.push("Successful Action.");
-                        addItemToInventory(itemID, action.output[itemID].amount);
-    
-                        if(skills[skillID] - action.level < 5 && skills[skillID] < skillData[skillID].levelCap){
-                            let lvlChance = (1 / (skills[skillID] * skills[skillID] / action.level)) * .1 / action.level;
-                            console.log("level: " + skills[skillID] + " lvlchance: " + lvlChance + " (1 in " + (1 / lvlChance) + ")");
-                            roll = Math.random();
-                            if(roll < lvlChance){
-                                skills[skillID]++;
-                                displayActionButtons();
-                                displayLevels();
-                                currentAction.messages.push("Level up!");
-                            }
-                        }else{
-                            currentAction.messages.push("Too high level for levelup or level cap reached.");
-                        }
-                    }
-                }else{
-                    currentAction.messages.push("Failed the action.");
-                }
-            }else{
-                currentAction.messages.push("You do not have enough items to complete the action.");
-            }
-        }
-    }
-
+function displayActionMessages(){
+    //Display the action messages.
     if(currentAction.messages != null){
         while(currentAction.messages.length > 5){
             currentAction.messages.shift();
@@ -165,8 +194,6 @@ function doAction(skillID, actionID){
             messageText += "<li>" + currentAction.messages[message] + "</li>";
         }
         messageText += "</ul>";
-
-        
 
         $("#actionMessage").html(messageText);
     }
@@ -194,7 +221,7 @@ function setCurrentAction(skillID, actionID){
 
 //Is called by the interval to do the current action.
 function doCurrentAction(){
-    doAction(currentAction.skillID, currentAction.actionID);
+    skills[currentAction.skillID].doAction(currentAction.actionID);
 }
 
 //Updates the action progressbar.

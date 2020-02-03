@@ -31,5 +31,6 @@ function loadAll(){
 //Initialize the save game.
 function initSave(){
     console.log("---Initializing Save---");
-    skills["spatialmagics"] = 1;
+    skills["spatialmagics"] = new Skill("spatialmagics");
+    skills["spatialmagics"].setLevel(1);
 }
