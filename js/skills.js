@@ -201,22 +201,31 @@ function displayActionMessages(){
 
 //Sets the current action and starts the interval.
 function setCurrentAction(skillID, actionID){
-    console.log("Setting current action to " + skillID + " " + actionID);
-    currentAction.skillID = skillID;
-    currentAction.actionID = actionID;
-    currentAction.messages = [];
-    clearInterval(currentAction.interval);
-    $("#currentAction").html(i18next.t("skills." + skillID + ".actions." + actionID + ".name"));
-    document.getElementById("actionProgress").max = skillData[skillID].actions[actionID].time;
-    currentAction.interval = setInterval(() => {
-        doCurrentAction()
-    }, skillData[skillID].actions[actionID].time);
-
-    currentAction.lastTime = Date.now();
-    clearInterval(currentAction.progressUpdate);
-    currentAction.progressUpdate = setInterval(() => {
-        updateProgress();
-    }, 10);
+    if(currentAction.skillID == skillID && currentAction.actionID == actionID){
+        console.log("Stopping action");
+        currentAction.skillID = null;
+        currentAction.actionID = null;
+        currentAction.messages = [];
+        clearInterval(currentAction.interval);
+        clearInterval(currentAction.progressUpdate);
+    }else{
+        console.log("Setting current action to " + skillID + " " + actionID);
+        currentAction.skillID = skillID;
+        currentAction.actionID = actionID;
+        currentAction.messages = [];
+        clearInterval(currentAction.interval);
+        $("#currentAction").html(i18next.t("skills." + skillID + ".actions." + actionID + ".name"));
+        document.getElementById("actionProgress").max = skillData[skillID].actions[actionID].time;
+        currentAction.interval = setInterval(() => {
+            doCurrentAction()
+        }, skillData[skillID].actions[actionID].time);
+    
+        currentAction.lastTime = Date.now();
+        clearInterval(currentAction.progressUpdate);
+        currentAction.progressUpdate = setInterval(() => {
+            updateProgress();
+        }, 10);
+    }
 }
 
 //Is called by the interval to do the current action.
