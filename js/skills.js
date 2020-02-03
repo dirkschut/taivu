@@ -252,3 +252,11 @@ function addToItemCap(category, amount){
     }
     itemCapModifiers[category] += amount;
 }
+
+//Set the level of the given skill to the given number
+function setSkillLevel(skillID, level){
+    if(skills[skillID] == null){
+        skills[skillID] = new Skill(skillID);
+    }
+    skills[skillID].setLevel(level);
+}

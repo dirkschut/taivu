@@ -6,6 +6,8 @@ var itemCapModifiers = {};
 var skills = {};
 var currentAction = {};
 
+var saveGameInterval;
+
 //Gets called when the document is loaded.
 $(document).ready(function(){
     loadAll();
@@ -19,11 +21,17 @@ function loadAll(){
     }
     else{
         initSave();
+        loadGame();
         showQuests();
         showSkills();
         showItems();
         displayLevels();
         displayActionButtons();
+        displayInventory();
+
+        saveGameInterval = setInterval(() => {
+            saveGame();
+        }, 10000);
 
         loadedContent = true;
     }
@@ -34,4 +42,30 @@ function initSave(){
     console.log("---Initializing Save---");
     skills["spatialmagics"] = new Skill("spatialmagics");
     skills["spatialmagics"].setLevel(1);
+}
+
+//Save the current game state into the localStorage of the browser.
+function saveGame(){
+    console.log("Saving Game");
+    localStorage.setItem("items", JSON.stringify(items));
+    localStorage.setItem("itemCapModifiers", JSON.stringify(itemCapModifiers));
+    localStorage.setItem("skills", JSON.stringify(skills));
+}
+
+//Load the save game from the browser's localStorage.
+function loadGame(){
+    let tempItems = JSON.parse(localStorage.getItem("items"));
+    for(item in tempItems){
+        addItemToInventory(item, tempItems[item].amount);
+    }
+
+    let tempItemCapModifiers = JSON.parse(localStorage.getItem("itemCapModifiers"));
+    if(tempItemCapModifiers != null){
+        itemCapModifiers = tempItemCapModifiers;
+    }
+
+    let tempSkills = JSON.parse(localStorage.getItem("skills"));
+    for(skill in tempSkills){
+        setSkillLevel(skill, tempSkills[skill].level);
+    }
 }
