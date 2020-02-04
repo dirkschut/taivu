@@ -54,6 +54,12 @@
         #right-col{
             margin-left: 260px;
         }
+        #actionProgress::-webkit-progress-value{
+            transition-duration: 0ms;
+        }
+        #actionProgress::-ms-fill{
+            transition-duration: 0ms;
+        }
         </style>
 
     </head>
@@ -83,7 +89,7 @@
                 <div class="taivuPage" id="home">
                     <p id="gamedesc"></p>
                     <h3 id="currentAction">Action Progress</h3>
-                    <progress id="actionProgress" value="10" max="100" style="transition: none; width: 100%;"></progress>
+                    <progress id="actionProgress" value="10" max="100" class="uk-progress"></progress>
                     <div id="actionMessage"></div>
                     <h2>Levels</h2>
                     <ul id="levels"></ul>
