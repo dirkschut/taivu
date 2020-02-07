@@ -60,6 +60,59 @@
         #actionProgress::-ms-fill{
             transition-duration: 0ms;
         }
+        .actionButton{
+            position: relative;
+            display: inline-block;
+        }
+        .actionButton .tooltiptext{
+            background-color: #222A30;
+            width: 400px;
+            border-radius: 6px;
+            padding: 6px 0;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -200px;
+            z-index: 1;
+            text-align: left;
+            visibility: hidden;
+            position: absolute;
+            text-transform: none;
+        }
+        .actionButton .tooltiptext .actionInput{
+            width: 190px;
+            float: left;
+            clear: none;
+            padding-left: 5px;
+        }
+        .actionButton .tooltiptext .actionInput ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .actionButton .tooltiptext .actionOutput{
+            width: 190px;
+            float: right;
+            clear: none;
+            padding-right: 5px;
+        }
+        .actionButton .tooltiptext .actionOutput ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .actionButton:hover .tooltiptext{
+            visibility: visible;
+        }
+        .actionButton .tooltiptext::after {
+            content: " ";
+            position: absolute;
+            top: 100%; /* At the bottom of the tooltip */
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #222A30 transparent transparent transparent;
+        }
         </style>
 
     </head>

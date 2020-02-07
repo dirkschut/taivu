@@ -25,7 +25,8 @@
     "requiredLevel": "Required Level",
     "difficulty": "Difficulty",
     "input": "Input",
-    "output": "Output"
+    "output": "Output",
+    "increaseItemCap": "Increase Item Cap"
   },
   "quests": {
     "exiled": {
@@ -139,6 +140,11 @@
     "essence_void_strong": {
       "name": "Strong Void Essence",
       "desc": "Strong essence harvested from the void."
+    }
+  },
+  "itemCategory": {
+    "essence": {
+      "name": "Essence"
     }
   }
 }

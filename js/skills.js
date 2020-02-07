@@ -180,7 +180,53 @@ function displayActionButtons(){
             let action = skill.actions[actionID];
             if(skills[skillID] != null){
                 if(skills[skillID].level >= action.level){
-                    actionsText += "<button class='uk-button uk-button-default' onclick='setCurrentAction(`" + skillID + "`, `" + actionID + "`)'>" + i18next.t("skills." + skillID + ".actions." + actionID + ".name") + "</button>";
+                    actionsText += "<button class='uk-button uk-button-default actionButton' onclick='setCurrentAction(`" + skillID + "`, `" + actionID + "`)'>";
+                    actionsText += i18next.t("skills." + skillID + ".actions." + actionID + ".name");
+
+                    //Begin tooltip
+                    actionsText += "<span class='tooltiptext uk-light'>";
+
+                    //Input
+                    if(action.input != null){
+                        actionsText += "<div class='actionInput'><b>" + i18next.t("general.input") + ":</b><ul>";
+                        for(input in action.input){
+                            actionsText += "<li>" + action.input[input].amount + " ";
+                            if(items[input] != null){
+                                actionsText += "(" + items[input].amount + ")";
+                            }else{
+                                actionsText += "(0)";
+                            }
+                            actionsText += " " + i18next.t("items." + input + ".name") + "</li>";
+                        }
+                        actionsText += "</ul></div>";
+                    }
+
+                    //Output
+                    if(action.output != null){
+                        actionsText += "<div class='actionOutput'><b>" + i18next.t("general.output") + ":</b><ul>";
+                        for(output in action.output){
+                            actionsText += "<li>" + action.output[output].amount + " ";
+                            if(items[output] != null){
+                                actionsText += "(" + items[output].amount + ")";
+                            }else{
+                                actionsText += "(0)";
+                            }
+                            actionsText += " " + i18next.t("items." + output + ".name") + "</li>";
+                        }
+                        actionsText += "</ul></div>";
+                    }
+
+                    //Increase Item Cap
+                    if(action.increase_cap != null){
+                        actionsText += "<div class='actionOutput'><b>" + i18next.t("general.increaseItemCap") + ":</b><ul>";
+                        for(increase_cap in action.increase_cap){
+                            actionsText += "<li>" + action.increase_cap[increase_cap].amount + " " + i18next.t("itemCategory." + increase_cap + ".name") + "</li>";
+                        }
+                        actionsText += "</ul></div>";
+                    }
+                    actionsText += "</span>";
+
+                    actionsText += "</button>";
                 }
             }
         }
