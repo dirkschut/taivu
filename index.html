@@ -68,15 +68,15 @@
             <aside id="left-col" class="uk-light">
                 <div class="bar-wrap">
                     <ul class="uk-nav-default" uk-nav>
-                        <li class="uk-nav-header">Game</li>
-                        <li class="uk-active"><a href="#" onclick="showPage('home')">Home</a></li>
-                        <li><a href="#" onclick="showPage('inventoryPage')">Inventory</a></li>
-                        <li><a href="#">Skills</a></li>
-                        <li class="uk-nav-header">Data</li>
-                        <li><a href="#" onclick="showPage('skilllist')">Skill List</a></li>
-                        <li><a href="#" onclick="showPage('questlist')">Quest List</a></li>
-                        <li><a href="#" onclick="showPage('itemlist')">Item List</a></li>
-                        <li class="uk-nav-header">External</li>
+                        <li class="uk-nav-header"><span id="navHeaderGame"></span></li>
+                        <li class="uk-active"><a href="#" onclick="showPage('home')"><span id="navHome"></span></a></li>
+                        <li><a href="#" onclick="showPage('inventoryPage')"><span id="navInventory"></span></a></li>
+                        <li><a href="#"><span id="navSkills"></span></a></li>
+                        <li class="uk-nav-header"><span id="navHeaderData"></span></li>
+                        <li><a href="#" onclick="showPage('skilllist')"><span id="navSkillList"></span></a></li>
+                        <li><a href="#" onclick="showPage('questlist')"><span id="navQuestList"></span></a></li>
+                        <li><a href="#" onclick="showPage('itemlist')"><span id="navItemList"></span></a></li>
+                        <li class="uk-nav-header"><span id="navHeaderExternal"></span></li>
                         <li><a href="https://discord.gg/YMQspV" target="_blank"><img src="img/discord.svg" width="30px" /> Discord</a></li>
                         <li><a href="https://github.com/mrDLSable/taivu" target="_blank"><img src="img/github.svg" width="30px" /> Github</a></li>
                     </ul>
@@ -88,17 +88,17 @@
 
                 <div class="taivuPage" id="home">
                     <p id="gamedesc"></p>
-                    <h3 id="currentAction">Action Progress</h3>
+                    <h3 id="currentAction"><span id="actionProgressTitle"></span></h3>
                     <progress id="actionProgress" value="10" max="100" class="uk-progress"></progress>
                     <div id="actionMessage"></div>
-                    <h2>Levels</h2>
+                    <h2><span id="levelsTitle"></span></h2>
                     <ul id="levels"></ul>
-                    <h2>Actions</h2>
+                    <h2><span id="actionsTitle"></span></h2>
                     <div id="actions"></div>
                 </div>
 
                 <div id="inventoryPage" class="taivuPage" style="display:none">
-                    <h2>Inventory</h2>
+                    <h2><span id="inventoryTitle"></span></h2>
                     <ul id="inventory"></ul>
                 </div>
 

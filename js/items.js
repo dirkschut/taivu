@@ -69,7 +69,7 @@ function getItemText(itemID){
 
     itemText += "<b>" + i18next.t("items." + itemID + ".name") + "</b><br />";
     itemText += i18next.t("items." + itemID + ".desc") + "<br />";
-    itemText += "Item Cap: " + itemData[itemID].cap;
+    itemText += i18next.t("general.itemCap") + ": " + itemData[itemID].cap;
 
     itemText += "</li>";
     return itemText;

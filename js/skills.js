@@ -41,7 +41,7 @@ class Skill{
                 let successChance = this.level / action.level / action.difficulty;
                 let roll = Math.random();
                 if(roll < successChance){
-                    currentAction.messages.push("Successful Action.");
+                    currentAction.messages.push(i18next.t("general.actionSuccess"));
 
                     //Add the output items to the inventory.
                     for(let itemID in action.output){
@@ -60,16 +60,16 @@ class Skill{
                         roll = Math.random();
                         if(roll < lvlChance){
                             this.level++;
-                            currentAction.messages.push("Level up!");
+                            currentAction.messages.push(i18next.t("general.actionLevelUp"));
                         }
                     }else{
-                        currentAction.messages.push("Too high level for levelup or level cap reached.");
+                        currentAction.messages.push(i18next.t("general.actionLevelTooHigh"));
                     }
                 }else{
-                    currentAction.messages.push("Failed the action.");
+                    currentAction.messages.push(i18next.t("general.actionFailed"));
                 }
             }else{
-                currentAction.messages.push("You do not have enough items to complete the action.");
+                currentAction.messages.push(i18next.t("general.actionNotEnoughItems"));
             }
         }
 
@@ -110,9 +110,9 @@ function getSkillText(skillID){
     
     skillText += "<b>" + i18next.t("skills." + skillID + ".name") + "</b><br />";
     skillText += i18next.t("skills." + skillID + ".desc") + "<br />";
-    skillText += "Level Cap: " + skillData[skillID].levelCap + "<br />";
+    skillText += i18next.t("general.levelCap") + ": " + skillData[skillID].levelCap + "<br />";
 
-    skillText += "Actions:<ul>";
+    skillText += i18next.t("general.actions") + ":<ul>";
 
     for(actionID in skillData[skillID].actions){
         skillText += getActionText(skillID, actionID);
@@ -130,7 +130,7 @@ function getSkillText(skillID){
     }
 
     if(childSkills != ""){
-        skillText += "Child Skills: <ul>";
+        skillText += i18next.t("general.childSkills") + ": <ul>";
         skillText += childSkills;
         skillText += "</ul>";
     }
@@ -146,14 +146,14 @@ function getActionText(skillID, actionID){
 
     actionText += "<b>" + i18next.t("skills." + skillID + ".actions." + actionID + ".name") + "</b><br />";
     actionText += i18next.t("skills." + skillID + ".actions." + actionID + ".desc") + "</b><br />";
-    actionText += "Required level: " + action.level + "<br />";
-    actionText += "Difficulty: " + action.difficulty + "<br />";
-    actionText += "Input: <ul>";
+    actionText += i18next.t("general.requiredLevel") + ": " + action.level + "<br />";
+    actionText += i18next.t("general.difficulty") + ": " + action.difficulty + "<br />";
+    actionText += i18next.t("general.input") + ": <ul>";
     for(input in action.input){
         actionText += "<li>" + action.input[input].amount + " " + i18next.t("items." + input + ".name") + "</li>";
     }
     actionText += "</ul>";
-    actionText += "Output: <ul>";
+    actionText += i18next.t("general.output") + ": <ul>";
     for(output in action.output){
         actionText += "<li>" + action.output[output].amount + " " + i18next.t("items." + output + ".name") + "</li>";
     }

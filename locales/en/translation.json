@@ -1,6 +1,32 @@
 {
   "gamedesc": "A semi-idle game in which the protagonist is somehow exiled to a void universe and has to use the magical powers that are present in said universe to learn to survive.",
   "madeby": "Made By",
+  "general": {
+    "game": "Game",
+    "home": "Home",
+    "inventory": "Inventory",
+    "skills": "Skills",
+    "data": "Data",
+    "skillList": "Skill List",
+    "questList": "Quest List",
+    "itemList": "Item List",
+    "external": "External",
+    "actionProgress": "Action Progress",
+    "levels": "Levels",
+    "actions": "Actions",
+    "itemCap": "Item Cap",
+    "actionSuccess": "Action Successful.",
+    "actionLevelUp": "Level Up!",
+    "actionLevelTooHigh": "Too high level for levelup or level cap reached.",
+    "actionFailed": "Failed the action.",
+    "actionNotEnoughItems": "You do not have enough items to complete the action.",
+    "levelCap": "Level Cap",
+    "childSkills": "Child Skills",
+    "requiredLevel": "Required Level",
+    "difficulty": "Difficulty",
+    "input": "Input",
+    "output": "Output"
+  },
   "quests": {
     "exiled": {
       "name": "Exiled",
