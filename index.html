@@ -71,7 +71,7 @@
                         <li class="uk-nav-header"><span id="navHeaderGame"></span></li>
                         <li class="uk-active"><a href="#" onclick="showPage('home')"><span id="navHome"></span></a></li>
                         <li><a href="#" onclick="showPage('inventoryPage')"><span id="navInventory"></span></a></li>
-                        <li><a href="#"><span id="navSkills"></span></a></li>
+                        <li><a href="#" onclick="showPage('skillsPage')"><span id="navSkills"></span></a></li>
                         <li class="uk-nav-header"><span id="navHeaderData"></span></li>
                         <li><a href="#" onclick="showPage('skilllist')"><span id="navSkillList"></span></a></li>
                         <li><a href="#" onclick="showPage('questlist')"><span id="navQuestList"></span></a></li>
@@ -91,8 +91,6 @@
                     <h3 id="currentAction"><span id="actionProgressTitle"></span></h3>
                     <progress id="actionProgress" value="10" max="100" class="uk-progress"></progress>
                     <div id="actionMessage"></div>
-                    <h2><span id="levelsTitle"></span></h2>
-                    <ul id="levels"></ul>
                     <h2><span id="actionsTitle"></span></h2>
                     <div id="actions"></div>
                 </div>
@@ -100,6 +98,11 @@
                 <div id="inventoryPage" class="taivuPage" style="display:none">
                     <h2><span id="inventoryTitle"></span></h2>
                     <ul id="inventory"></ul>
+                </div>
+
+                <div id="skillsPage" class="taivuPage" style="display:none">
+                    <h2><span id="levelsTitle"></span></h2>
+                    <ul id="levels"></ul>
                 </div>
 
                 <div id="skilllist" class="taivuPage" style="display:none"></div>
