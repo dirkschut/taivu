@@ -80,4 +80,13 @@ function showPage(pageID){
             pages[i].style.display = "none";
         }
     }
+
+    let menuItems = document.getElementsByClassName("taivuPageMenu");
+    for(let i = 0; i < menuItems.length; i++){
+        if(menuItems[i].id == pageID + "_nav"){
+            menuItems[i].classList.add("uk-active");
+        }else{
+            menuItems[i].classList.remove("uk-active");
+        }
+    }
 }
