@@ -17,6 +17,31 @@ class Skill{
         return skillData[this.id];
     }
 
+    //Returns the chance of the given action to be a success (between 0 and 1).
+    getActionSuccessChance(actionID){
+        //Check if the action exists.
+        if(this.getSkillData().actions[actionID] == null){
+            return -1;
+        }
+
+        let action = this.getSkillData().actions[actionID];
+        return this.level / action.level / action.difficulty;
+    }
+
+    getActionLevelupChance(actionID){
+        //Check if the action exists.
+        if(this.getSkillData().actions[actionID] == null){
+            return -1;
+        }
+
+        let action = this.getSkillData().actions[actionID];
+        let levelChance = (1 / (this.level * this.level / action.level)) * .1 / action.level;
+        if(this.level - action.level >= 5){
+            levelChance = 0;
+        }
+        return levelChance;
+    }
+
     doAction(actionID){
         currentAction.lastTime = Date.now();
         let action = this.getSkillData().actions[actionID];
@@ -38,7 +63,7 @@ class Skill{
                 }
 
                 //Check to see if you succeed in the action.
-                let successChance = this.level / action.level / action.difficulty;
+                let successChance = this.getActionSuccessChance(actionID);
                 let roll = Math.random();
                 if(roll < successChance){
                     currentAction.messages.push(i18next.t("general.actionSuccess"));
@@ -54,8 +79,8 @@ class Skill{
                     }
     
                     //Check to see if the skill leveled from the action.
-                    if(this.level - action.level < 5 && this.level < skillData[skillID].levelCap){
-                        let lvlChance = (1 / (this.level * this.level / action.level)) * .1 / action.level;
+                    let lvlChance = this.getActionLevelupChance(actionID);
+                    if(lvlChance > 0 && this.level < skillData[skillID].levelCap){
                         console.log("level: " + this.level + " lvlchance: " + lvlChance + " (1 in " + (1 / lvlChance) + ")");
                         roll = Math.random();
                         if(roll < lvlChance){
@@ -185,6 +210,12 @@ function displayActionButtons(){
 
                     //Begin tooltip
                     actionsText += "<span class='tooltiptext uk-light'>";
+
+                    //Success chance and levelup chance
+                    actionsText += "<div class='chanceText'>";
+                    actionsText += "Success Chance: " + parseFloat(skills[skillID].getActionSuccessChance(actionID) * 100).toFixed(2) + "%<br />";
+                    actionsText += "Levelup Chance: " + parseFloat(skills[skillID].getActionLevelupChance(actionID) * 100).toFixed(2) + "%";
+                    actionsText += "</div><hr/>";
 
                     //Input
                     if(action.input != null){
