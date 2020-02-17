@@ -205,7 +205,17 @@ function displayActionButtons(){
             let action = skill.actions[actionID];
             if(skills[skillID] != null){
                 if(skills[skillID].level >= action.level){
-                    actionsText += "<button class='uk-button uk-button-default actionButton' onclick='setCurrentAction(`" + skillID + "`, `" + actionID + "`)'>";
+
+                    let chance = "chanceVeryLow";
+                    if(skills[skillID].getActionSuccessChance(actionID) >= 0.90){
+                        chance = "chanceHigh";
+                    }else if(skills[skillID].getActionSuccessChance(actionID) >= 0.75){
+                        chance = "chanceMedium";
+                    }else if(skills[skillID].getActionSuccessChance(actionID) >= 0.50){
+                        chance = "chanceLow";
+                    }
+
+                    actionsText += "<button class='uk-button uk-button-default actionButton " + chance + "' onclick='setCurrentAction(`" + skillID + "`, `" + actionID + "`)'>";
                     actionsText += i18next.t("skills." + skillID + ".actions." + actionID + ".name");
 
                     //Begin tooltip
